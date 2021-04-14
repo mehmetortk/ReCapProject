@@ -20,5 +20,9 @@ Trusted_Connection=true");
         public  DbSet<Car> TblCar { get; set; }
         public  DbSet<Brand> TblBrand { get; set; }
         public  DbSet<Color> TblColor { get; set; }
+        public DbSet<User> TblUser { get; set; }
+        public DbSet<Customer> TblCustomer { get; set; }
+        public DbSet<Rental> TblRental { get; set; }
+
     }
 }
