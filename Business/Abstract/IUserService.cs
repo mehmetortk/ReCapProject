@@ -11,5 +11,8 @@ namespace Business.Abstract
     public interface IUserService
     {
         IDataResult<User> GetCarsByUserId(int id);
+        IResult Add(User user);
+        IResult Update(User user);
+        IResult Delete(int userId);
     }
 }

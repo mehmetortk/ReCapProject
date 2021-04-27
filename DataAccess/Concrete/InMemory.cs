@@ -18,14 +18,14 @@ namespace DataAccess.Concrete
         {
             _car = new List<Car>
             {
-                new Car {Id = 1, BrandId = 1, ColorId = 1, DailyPrice = 300, ModelYear = 2010, Description = "Suv"},
-                new Car {Id = 2, BrandId = 1, ColorId = 4, DailyPrice = 400, ModelYear = 2012, Description = "Offroad"},
-                new Car {Id = 3, BrandId = 2, ColorId = 2, DailyPrice = 500, ModelYear = 2014, Description = "Daily"},
-                new Car {Id = 4, BrandId = 3, ColorId = 2, DailyPrice = 600, ModelYear = 2015, Description = "Sport"},
-                new Car {Id = 5, BrandId = 4, ColorId = 5, DailyPrice = 700, ModelYear = 2016, Description = "Jeep"},
-                new Car {Id = 6, BrandId = 5, ColorId = 3, DailyPrice = 800, ModelYear = 2018, Description = "Lux"},
-                new Car {Id = 7, BrandId = 6, ColorId = 2, DailyPrice = 900, ModelYear = 2020, Description = "Race car"},
-                new Car {Id = 8, BrandId = 6, ColorId = 6, DailyPrice = 1000, ModelYear = 2021, Description = "Protected"}
+                new Car {CarId = 1, BrandId = 1, ColorId = 1, CarDailyPrice = 300, CarModelYear = "2010", CarDescription = "Suv"},
+                new Car {CarId = 2, BrandId = 1, ColorId = 4, CarDailyPrice = 400, CarModelYear = "2012", CarDescription = "Offroad"},
+                new Car {CarId = 3, BrandId = 2, ColorId = 2, CarDailyPrice = 500, CarModelYear = "2014", CarDescription = "Daily"},
+                new Car {CarId = 4, BrandId = 3, ColorId = 2, CarDailyPrice = 600, CarModelYear = "2015", CarDescription = "Sport"},
+                new Car {CarId = 5, BrandId = 4, ColorId = 5, CarDailyPrice = 700, CarModelYear = "2016", CarDescription = "Jeep"},
+                new Car {CarId = 6, BrandId = 5, ColorId = 3, CarDailyPrice = 800, CarModelYear = "2018", CarDescription = "Lux"},
+                new Car {CarId = 7, BrandId = 6, ColorId = 2, CarDailyPrice = 900, CarModelYear = "2020", CarDescription = "Race car"},
+                new Car {CarId = 8, BrandId = 6, ColorId = 6, CarDailyPrice = 1000, CarModelYear = "2021", CarDescription = "Protected"}
             };
         }
 
@@ -43,7 +43,7 @@ namespace DataAccess.Concrete
         public void Delete(Car car)
         {
             Car deleteToCar;
-            deleteToCar = _car.SingleOrDefault(p => p.Id == car.Id);
+            deleteToCar = _car.SingleOrDefault(p => p.CarId == car.CarId);
             _car.Remove(car);
 
         }
@@ -80,7 +80,7 @@ namespace DataAccess.Concrete
 
         public List<Car> GetById(int id)
         {
-            return _car.Where(p => p.Id == id).ToList();
+            return _car.Where(p => p.CarId == id).ToList();
         }
 
         public List<CarDetailsDto> GetCarDetails()
@@ -91,8 +91,8 @@ namespace DataAccess.Concrete
         public void Update(Car car)
         {
             Car updateToCar;
-            updateToCar = _car.SingleOrDefault(p => p.Id == car.Id);
-            updateToCar.Description = car.Description;
+            updateToCar = _car.SingleOrDefault(p => p.CarId == car.CarId);
+            updateToCar.CarDescription = car.CarDescription;
         }
 
         public void Update(Color entity)

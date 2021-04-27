@@ -18,15 +18,15 @@ namespace DataAccess.Concrete.EntityFramework
         {
             using (EfContext context=new EfContext())
             {
-                var result = from c in context.TblCar
-                    join o in context.TblColor on
+                var result = from c in context.Cars
+                    join o in context.Colors on
                         c.ColorId equals o.ColorId
-                    join b in context.TblBrand on c.BrandId equals
+                    join b in context.Brands on c.BrandId equals
                         b.BrandId
                     select new CarDetailsDto
                     {
-                        BrandName = b.BrandName, ColorName = o.ColorName,DailyPrice = c.DailyPrice
-                        ,Description = c.Description
+                        BrandName = b.BrandName, ColorName = o.ColorName,CarDailyPrice = c.CarDailyPrice
+                        ,CarDescription = c.CarDescription
                     };
                 return result.ToList();
             }
