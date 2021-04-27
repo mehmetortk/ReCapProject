@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Business.Abstract;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.AutoFac.Validation;
 using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -40,7 +41,9 @@ namespace Business.Concrete
             //}
             return new SuccessDataResult<List<CarDetailsDto>>(_carDal.GetCarDetails());
         }
-       // [Validate]
+       
+        [ValidationAspect(typeof(CarValidator))] //alttaki metotu carvalidator kullanarak dogrula demek
+        //validation aspect kodu ise core katmaninda validation icinde yazili
 
         public IResult Add(Car car)
 
@@ -53,7 +56,8 @@ namespace Business.Concrete
             //    throw new ValidationException(result.Errors);
             //}
 
-            ValidationTool.Validate(new CarValidator(),car);
+           // ustteki attribute eklenince devre disi kaldi ve bu kod coredaki validation
+           // sekmesine gitti daha genel oldu ValidationTool.Validate(new CarValidator(),car);
 
             _carDal.Add(car);
             return new SuccessResult(Messages.ItemAdded);

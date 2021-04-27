@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Autofac;
+using Autofac.Extras.DynamicProxy;
 using Business.Abstract;
 using Business.Concrete;
+using Castle.DynamicProxy;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 
@@ -31,7 +33,14 @@ namespace Business.DependencyResolvers.AutoFac
             builder.RegisterType<ColorManager>().As<IColorService>().SingleInstance();
             builder.RegisterType<EfColorDal>().As<IColorDal>().SingleInstance();
 
+            //alttaki satirlar interceptorlari kullanabilmemizi saglar
+            var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 
+            builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces()
+                .EnableInterfaceInterceptors(new ProxyGenerationOptions()
+                {
+                    Selector = new AspectInterceptorSelector()
+                }).SingleInstance();
         }
     }
 

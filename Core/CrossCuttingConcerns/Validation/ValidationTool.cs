@@ -21,7 +21,7 @@ namespace Core.CrossCuttingConcerns.Validation
             }
         }
 
-
+        //interceptors,aspect,dependency resolvers vs bunlar ileri seviye kodlamalardir 
 
 
     }
